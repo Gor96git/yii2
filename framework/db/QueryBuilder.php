@@ -258,6 +258,7 @@ class QueryBuilder extends \yii\base\BaseObject
         $union = $this->buildUnion($query->union, $params);
         if ($union !== '') {
             $sql = "($sql){$this->separator}$union";
+            $sql = $this->buildOrderByAndLimit($sql, $query->orderBy, $query->limit, $query->offset);
         }
 
         $with = $this->buildWithQueries($query->withQueries, $params);
